@@ -38,17 +38,25 @@
                             <div class="logo">
                                 <img src="{{ asset('panel/assets/images/logo.png') }}" alt="" class="img-fluid">
                             </div>
-                            <form action=" " class="d-block" method="post">
-                                
+                            @if(Session::has('error'))
+                                <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                                    <strong>{{ session::get('error') }}</strong> check again!
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                            @endif
+                            <form action="{{ route('admin.login') }}" class="d-block" method="post">
+                                @csrf
                                 <div class="form-group icon_parent">
-                                     <label for="password">Email</label>
-         <input id="email" type="email" class="form-control"  name="email" value=" " required autocomplete="email" autofocus placeholder="Email Address">
-              <span class="icon_soon_bottom_right"><i class="fas fa-envelope"></i></span>
+                                    <label for="password">Email</label>
+                                    <input type="email" class="form-control"  name="email" autocomplete="email" autofocus placeholder="Email Address">
+                                    <span class="icon_soon_bottom_right"><i class="fas fa-envelope"></i></span>
                                  
                                 </div>
                                 <div class="form-group icon_parent">
                                     <label for="password">Password</label>
-       <input id="password" type="password" class="form-control"   name="password" required autocomplete="current-password" placeholder="Password">
+                                    <input type="password" class="form-control"   name="password" autocomplete="current-password" placeholder="Password">
                                         
                                     <span class="icon_soon_bottom_right"><i class="fas fa-unlock"></i></span>
                                 </div>
