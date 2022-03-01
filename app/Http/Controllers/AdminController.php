@@ -17,7 +17,12 @@ class AdminController extends Controller
 
     public function Login(Request $request){
         $check = $request->all();
-        if(Auth::guard()->attempt(['email' => $check['email'],'password' => $check['password']])){
+        // dd($check);
+        if(Auth::guard('admin')->attempt([
+            'email' => $check['email'],
+            'password' => $check['password']
+            ]))
+        {
             return redirect()->route('admin.dashboard')->with('error','Admin Login Successfully');
         }else{
             return back()->with('error','Invaild Email and Password');
